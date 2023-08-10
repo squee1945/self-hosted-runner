@@ -52,3 +52,5 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ env.LATEST_TAG }}
+        secrets: |
+          GIT_AUTH_TOKEN=${{ secrets.MYTOKEN }}
