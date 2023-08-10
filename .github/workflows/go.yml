@@ -5,7 +5,7 @@ name: Go and Docker
 
 env:
   TEST_TAG: ghcr.io/squee1945/self-hosted-runner:test
-  LATEST_TAG: ghcr.io/squee1945/self-hosted-runner:test
+  LATEST_TAG: ghcr.io/squee1945/self-hosted-runner:latest
 
 on:
   push:
@@ -17,6 +17,11 @@ jobs:
 
   build:
     runs-on: self-hosted
+    
+    permissions:
+      contents: read
+      packages: write
+      
     steps:
     - uses: actions/checkout@v3
 
@@ -59,5 +64,3 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: ${{ env.LATEST_TAG }}
-        secrets: |
-          GIT_AUTH_TOKEN=${{ secrets.GITHUB_TOKEN }}
